@@ -1,0 +1,20 @@
+---
+- import_tasks: hostname.yml
+
+- import_tasks: update_localsource.yml
+
+  #- import_tasks: raid.yml
+  #when: inventory_hostname in groups['compute']
+
+- import_tasks: ntpserver_install.yml
+  when: inventory_hostname == "{{ groups['compute'][0] }}"
+
+- import_tasks: ntp_cron.yml
+  when: inventory_hostname in groups['total'] and inventory_hostname != "{{ groups['compute'][0] }}"
+  tags:
+    - ntp_cron
+
+- import_tasks: optimize.yml
+  tags:
+    - optimize
+#- import_tasks: del_ceph.yml

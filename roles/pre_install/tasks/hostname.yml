@@ -1,0 +1,9 @@
+---
+#- name: copy hostname
+#  template: src=hostname dest=/etc/hostname
+#
+#- name: modify hostname
+#  shell: hostname -F /etc/hostname
+
+- name: copy the hosts
+  copy: src=hosts dest=/etc/hosts

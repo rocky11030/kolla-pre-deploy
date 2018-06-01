@@ -1,0 +1,35 @@
+---
+  - name: copy raidtools
+    #copy: src=storcli-1.07.07-1.noarch.rpm dest=/root
+    copy: src=raid/storcli.deb dest=/tmp
+
+  - name: install raidtool
+    #command: rpm -ivh /root/storcli-1.07.07-1.noarch.rpm
+    command: dpkg -i /tmp/storcli.deb
+
+  - name: autoraid
+    script: raid/autoraid.sh
+    
+    #  - name: format disk
+    #    shell: parted {{ item }} rm 1 && parted {{ item }} rm 2
+    #    with_items:
+    #      - /dev/sdb
+    #      - /dev/sdc
+    #      - /dev/sdd
+    #      - /dev/sde
+    #      - /dev/sdf
+    #      - /dev/sdg
+    #    tags:
+    #      - parted2017
+    #
+        #  - name: format disk
+        #    shell: parted {{ item }} -s -- mklabel gpt mkpart KOLLA_CEPH_OSD_BOOTSTRAP 1 -1
+        #    with_items:
+        #      - /dev/sdb
+        #      - /dev/sdc
+        #      - /dev/sdd
+        #      - /dev/sde
+        #      - /dev/sdf
+        #      - /dev/sdg
+        #    tags:
+        #      - parted

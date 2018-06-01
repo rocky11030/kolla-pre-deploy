@@ -1,0 +1,5 @@
+---
+local_source: 192.168.248.18:8800
+ntp_nodes: 10.2.67.4
+network: 10.2.0.0
+netmask: 255.255.0.0

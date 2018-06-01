@@ -1,0 +1,49 @@
+---
+#######################
+#add local_release
+#######################
+- name: update neunn_localopenstack_release
+  template: src=local.list dest=/etc/apt/sources.list
+
+
+- name: update apt-cache1
+  apt: update_cache=yes
+#  ignore_errors: true
+
+- name: update apt-cache2
+  shell: apt-get update
+
+
+#######################
+#remove apparmor
+#######################
+- name: apparmor install?
+  shell: dpkg -s apparmor
+  register: apparmor_installed
+  failed_when: false
+  tags:
+    - test4
+
+- name: stop apparmor
+  service: name=apparmor state=stopped
+  when: apparmor_installed.rc ==  0
+  tags:
+    - test4
+
+- name: remove apparmor
+  shell: update-rc.d -f apparmor remove
+  when: apparmor_installed.rc == 0
+  tags:
+    - test4
+- name: purge apparmor
+  apt: name=apparmor state=absent purge=yes
+  tags:
+    - test4
+
+#########################
+#install ntp
+#########################
+#- name: install package for ntp(chonry)
+#  apt: name=chrony state=present force=yes 
+#  tags:
+#    - test5

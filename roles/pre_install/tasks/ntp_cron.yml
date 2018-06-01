@@ -1,0 +1,25 @@
+---
+- name: install ntpdate
+  apt: name=ntpdate state=present
+  #yum: name=ntpdate state=present
+
+#- name: stop ntp service
+#  service: name=ntp state=stopped enabled=no
+
+- name: 时区调整
+  shell: cp /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
+
+
+- name: update ntp time
+  shell: ntpdate {{ ntp_nodes }}
+  tags:
+    - ntp_cron1
+
+- name: add cron job
+  cron: 
+    name: "update ntp"
+    minute: "0"
+    hour: "2"
+    job: "/usr/sbin/ntpdate {{ ntp_nodes }} >> /tmp/ntp.log 2>&1"
+  tags:
+    - ntp_cron1

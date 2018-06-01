@@ -1,0 +1,17 @@
+[control]
+#10.2.67.[1:3] ansible_ssh_user=root ansible_ssh_pass=Neunn2016
+
+[network]
+#10.2.131.[7:8] ansible_ssh_user=root ansible_ssh_pass=Neunn2016
+
+[compute]
+#10.2.67.[6:12] ansible_ssh_user=root ansible_ssh_pass=Neunn2016
+
+#[portal]
+#10.2.70.5 ansible_ssh_user=root ansible_ssh_pass=cobbler
+
+[total:children]
+network
+control
+compute
+#portal
