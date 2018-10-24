@@ -28,17 +28,17 @@
 - name: update sysctl
   command: sysctl -p
 
-- name: modify the network1 file
-  lineinfile:
-    dest: /etc/network/interfaces
-    regexp: ^auto enp1s0f0
-    line: 'auto eth0'
-
-- name: modify the network2 file
-  lineinfile:
-    dest: /etc/network/interfaces
-    regexp: ^iface enp1s0f0 inet static
-    line: 'iface eth0 inet static'
+#- name: modify the network1 file
+#  lineinfile:
+#    dest: /etc/network/interfaces
+#    regexp: ^auto enp1s0f0
+#    line: 'auto eth0'
+#
+#- name: modify the network2 file
+#  lineinfile:
+#    dest: /etc/network/interfaces
+#    regexp: ^iface enp1s0f0 inet static
+#    line: 'iface eth0 inet static'
  
 - name: reboot
   shell: reboot

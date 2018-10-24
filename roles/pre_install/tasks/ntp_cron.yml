@@ -22,4 +22,4 @@
     hour: "2"
     job: "/usr/sbin/ntpdate {{ ntp_nodes }} >> /tmp/ntp.log 2>&1"
   tags:
-    - ntp_cron1
+    - ntp_cron2

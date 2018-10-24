@@ -1,7 +1,7 @@
 ---
 - import_tasks: hostname.yml
 
-- import_tasks: update_localsource.yml
+#- import_tasks: update_localsource.yml
 
   #- import_tasks: raid.yml
   #when: inventory_hostname in groups['compute']
